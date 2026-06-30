@@ -1,0 +1,282 @@
+//APP.JS NUEVO DESDE CERO //
+
+// ==============================
+// CANVAS BASE
+// ==============================
+const canvas = new fabric.Canvas("canvasPlano", {
+    width: window.innerWidth - 200,
+    height: window.innerHeight,
+    selection: false
+});
+
+// ==============================
+// ELEMENTOS DOM
+// ==============================
+const btnCargarPlano = document.getElementById("btnCargarPlano");
+const inputPlano = document.getElementById("inputPlano");
+
+// ==============================
+// EVENTO BOTÓN → ABRIR FILE INPUT
+// ==============================
+btnCargarPlano.addEventListener("click", () => {
+    inputPlano.click();
+});
+
+// ==============================
+// CARGAR IMAGEN COMO FONDO
+// ==============================
+inputPlano.addEventListener("change", function (e) {
+
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (f) {
+
+        fabric.Image.fromURL(f.target.result, function (img) {
+
+            // ajustar escala al canvas
+            const scaleX = canvas.getWidth() / img.width;
+            const scaleY = canvas.getHeight() / img.height;
+            const scale = Math.min(scaleX, scaleY);
+
+            canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+                scaleX: scale,
+                scaleY: scale,
+                originX: "left",
+                originY: "top"
+            });
+
+        });
+
+    };
+
+    reader.readAsDataURL(file);
+});
+
+// ZOOM MAS PAN MAS CLICK DERECHO//
+
+// Bloquea clic derecho (desplegable de copiar pegar guardar imagen etc)
+canvas.upperCanvasEl.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+
+// VARIABLES - ESTADO DEL PAN
+let isPanning = false;
+let lastX = 0;
+let lastY = 0;
+// CLICK DERECHO ---> INICIA PAN
+canvas.upperCanvasEl.addEventListener("mousedown", function (e) {
+
+    if (e.button !== 2) return; // solo click derecho
+
+    isPanning = true;
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    canvas.selection = false;
+});
+// MOVIMIENTO DEL PAN
+canvas.upperCanvasEl.addEventListener("mousemove", function (e) {
+
+    if (!isPanning) return;
+
+    const vpt = canvas.viewportTransform;
+
+    const deltaX = e.clientX - lastX;
+    const deltaY = e.clientY - lastY;
+
+    vpt[4] += deltaX;
+    vpt[5] += deltaY;
+
+    canvas.requestRenderAll();
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+});
+//SOLTAR CLICK DERECHO ----> TERMINA EL PAN
+window.addEventListener("mouseup", function () {
+    isPanning = false;
+    canvas.selection = true;
+});
+// ZOOM CON RUEDA DEL MOUSE
+canvas.on("mouse:wheel", function (opt) {
+
+    let delta = opt.e.deltaY;
+
+    let zoom = canvas.getZoom();
+
+    zoom *= 0.999 ** delta;
+
+    if (zoom > 5) zoom = 5;
+    if (zoom < 0.2) zoom = 0.2;
+
+    canvas.zoomToPoint(
+        { x: opt.e.offsetX, y: opt.e.offsetY },
+        zoom
+    );
+
+    opt.e.preventDefault();
+    opt.e.stopPropagation();
+});
+
+// SECCION HERRAMIENTAS
+
+// Sistema de herramientas simple
+
+let tool = "boca";
+
+function setTool(t) {
+    tool = t;
+}
+
+// BOTONES BARRA HERRAMIENTAS
+
+// -------- Primer sistema de botones -------------
+// document.getElementById("toolBoca").onclick = () => setTool("boca");
+// document.getElementById("toolToma").onclick = () => setTool("toma");
+// document.getElementById("toolTablero").onclick = () => setTool("tablero");
+// -------- Segundo Sistem de Bot. Seleccion de objetos --------------
+document.getElementById("toolBoca").onclick = () => {
+    tool = "boca";
+    canvas.selection = false;
+};
+
+document.getElementById("toolToma").onclick = () => {
+    tool = "toma";
+    canvas.selection = false;
+};
+
+document.getElementById("toolTablero").onclick = () => {
+    tool = "tablero";
+    canvas.selection = false;
+};
+
+
+// CREA SIMBOLOS/OBJETOS QUE REPRESENTAN DESCRIPCION DE LOS BOTONES
+
+function crearSimbolo(x, y, tipo) {
+
+    let obj;
+
+    if (tipo === "boca") {
+        obj = new fabric.Circle({
+            left: x,
+            top: y,
+            radius: 6,
+            fill: "orange",
+            originX: "center",
+            originY: "center"
+        });
+    }
+
+    if (tipo === "toma") {
+        obj = new fabric.Rect({
+            left: x,
+            top: y,
+            width: 12,
+            height: 12,
+            fill: "blue",
+            originX: "center",
+            originY: "center"
+        });
+    }
+
+    if (tipo === "tablero") {
+        obj = new fabric.Rect({
+            left: x,
+            top: y,
+            width: 20,
+            height: 20,
+            fill: "gray",
+            originX: "center",
+            originY: "center"
+        });
+    }
+
+    obj.tipo = tipo;
+    obj.set({ selectable: true });
+
+    canvas.add(obj);
+    console.log("Se ha creado nuev - " + obj + " - " + obj.tipo);
+    return obj;
+}
+
+// MOUSE DOWN - Click izquierdo
+// COORDENADAS DONDE SE INSTANCIAN LOS OBJETOS SOBRE EL MAPA/PLANO
+// Click en Canvas (USAR SIEMPRE COORDENADAS DE CANVAS!!)
+
+canvas.on("mouse:down", function (opt) {
+
+    // PAN con click derecho
+    if (opt.button === 2) return;
+
+    const pointer = canvas.getPointer(opt.e);
+
+    const target = opt.target;
+
+    // 🔥 MODO BORRAR
+    if (tool === "delete") {
+
+        if (target) {
+            borrarObjeto(target);
+        }
+
+        return;
+    }
+
+
+    // 🔥 MODO SELECCIÓN
+    if (tool === "select") {
+        return; // Fabric maneja todo automáticamente
+    }
+    // 🔥 MODO CREACIÓN
+    if (tool === "boca" || tool === "toma" || tool === "tablero") {
+        crearSimbolo(pointer.x, pointer.y, tool);
+    }
+});
+
+// HERRAMIENTA SELECCIONAR
+
+// Variables, estado de herramienta
+//let tool = "boca";
+
+// Boton seleccionar
+
+document.getElementById("toolSelect").onclick = () => {
+    tool = "select";
+
+    // habilitar selección global de Fabric
+    canvas.selection = true;
+    canvas.forEachObject(obj => {
+        obj.selectable = true;
+        obj.evented = true;
+    });
+
+    console.log("Modo selección activado");
+};
+
+// HERRAMIENTA BORRAR 
+
+// -- boton borrar
+
+document.getElementById("toolDelete").onclick = () => {
+    tool = "delete";
+
+    canvas.selection = false;
+
+    console.log("🗑️ Modo BORRADO activo");
+};
+
+// Metodo para borrar objetos
+
+function borrarObjeto(obj) {
+
+    if (!obj) return;
+
+    console.log("Eliminando objeto:", obj.tipo || "desconocido");
+
+    canvas.remove(obj);
+};
