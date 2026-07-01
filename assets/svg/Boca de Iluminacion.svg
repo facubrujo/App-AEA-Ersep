@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 1;" cx="100" cy="100" rx="90" ry="90"/>
+  <path style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 1;" d="M 29.901 47.096 C 18.307 26.405 136.619 125.789 161.321 169.863"/>
+  <path style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 1;" d="M 36.363 166.605 C 34.493 153.395 169.007 39.434 169.937 46.011"/>
+</svg>

@@ -139,76 +139,231 @@ function setTool(t) {
 // document.getElementById("toolToma").onclick = () => setTool("toma");
 // document.getElementById("toolTablero").onclick = () => setTool("tablero");
 // -------- Segundo Sistem de Bot. Seleccion de objetos --------------
+// document.getElementById("toolBoca").onclick = () => {
+//     tool = "boca";
+//     canvas.selection = false;
+// };
+
+// document.getElementById("toolToma").onclick = () => {
+//     tool = "toma";
+//     canvas.selection = false;
+// };
+
+// document.getElementById("toolTablero").onclick = () => {
+//     tool = "tablero";
+//     canvas.selection = false;
+// };
+// =====================================================
+// SISTEMA DE BOTONES (TOOLS)
+// =====================================================
+
+document.getElementById("toolSelect").onclick = () => {
+    tool = "select";
+    canvas.selection = true;
+    console.log("🟢 SELECT activado");
+};
+
+document.getElementById("toolDelete").onclick = () => {
+    tool = "delete";
+    canvas.selection = false;
+    console.log("🗑️ DELETE activado");
+};
+
+document.getElementById("toolCable").onclick = () => {
+    tool = "cable";
+    console.log("🔌 CABLE activado");
+};
+
+// =====================================================
+// BOCA DE ILUMINACIÓN (SVG)
+// =====================================================
+
 document.getElementById("toolBoca").onclick = () => {
     tool = "boca";
-    canvas.selection = false;
+    console.log("💡 BOCA activada");
 };
+
+// =====================================================
+// BOCA DE PARED
+// =====================================================
+
+document.getElementById("toolBocaPared").onclick = () => {
+    tool = "bocaPared";
+    console.log("💡 BOCA PARED activada");
+};
+
+// =====================================================
+// TOMACORRIENTE
+// =====================================================
 
 document.getElementById("toolToma").onclick = () => {
     tool = "toma";
-    canvas.selection = false;
+    console.log("🔌 TOMA activada");
 };
 
-document.getElementById("toolTablero").onclick = () => {
-    tool = "tablero";
-    canvas.selection = false;
+// =====================================================
+// TABLEROS
+// =====================================================
+
+document.getElementById("toolTPA").onclick = () => {
+    tool = "tableroTPA";
+    console.log("⚡ TPA activado");
 };
 
+document.getElementById("toolTS").onclick = () => {
+    tool = "tableroTS";
+    console.log("⚡ TS activado");
+};
+
+// =====================================================
+// INTERRUPTORES
+// =====================================================
+
+document.getElementById("toolSwitch1").onclick = () => {
+    tool = "switch1";
+    console.log("🔘 SWITCH 1 activado");
+};
+
+document.getElementById("toolSwitch2").onclick = () => {
+    tool = "switch2";
+    console.log("🔘 SWITCH 2 activado");
+};
+
+document.getElementById("toolSwitchCombo").onclick = () => {
+    tool = "switchCombo";
+    console.log("🔘 SWITCH COMBO activado");
+};
+
+// =====================================================
+// VENTILADOR
+// =====================================================
+
+document.getElementById("toolFan").onclick = () => {
+    tool = "fan";
+    console.log("🌀 VENTILADOR activado");
+};
 
 // CREA SIMBOLOS/OBJETOS QUE REPRESENTAN DESCRIPCION DE LOS BOTONES
 
-function crearSimbolo(x, y, tipo) {
+// function crearSimbolo(x, y, tipo) {
 
-    let obj;
+//     let obj;
 
-    if (tipo === "boca") {
-        obj = new fabric.Circle({
-            left: x,
-            top: y,
-            radius: 6,
-            fill: "orange",
-            originX: "center",
-            originY: "center"
-        });
+//     // if (tipo === "boca") {
+//     //     obj = new fabric.Circle({
+//     //         left: x,
+//     //         top: y,
+//     //         radius: 6,
+//     //         fill: "orange",
+//     //         originX: "center",
+//     //         originY: "center"
+//     //     });
+//     // }
+//     if (tipo === "boca") {
+
+//         crearBocaSVG(x, y, function (simbolo) {
+
+//             simbolo.tipo = "boca";
+
+//             canvas.add(simbolo);
+
+//             console.log("Se creó una boca SVG");
+
+//         });
+
+//         return;
+
+//     }
+
+//     if (tipo === "toma") {
+//         obj = new fabric.Rect({
+//             left: x,
+//             top: y,
+//             width: 12,
+//             height: 12,
+//             fill: "blue",
+//             originX: "center",
+//             originY: "center"
+//         });
+//     }
+
+//     if (tipo === "tablero") {
+//         obj = new fabric.Rect({
+//             left: x,
+//             top: y,
+//             width: 20,
+//             height: 20,
+//             fill: "gray",
+//             originX: "center",
+//             originY: "center"
+//         });
+//     }
+
+//     obj.tipo = tipo;
+//     obj.set({ selectable: true });
+
+//     canvas.add(obj);
+//     console.log("Se ha creado nuev - " + obj + " - " + obj.tipo);
+//     return obj;
+// }
+async function crearSimbolo(x, y, tipo) {
+
+    let obj = null;
+
+    switch (tipo) {
+
+        case "boca":
+            obj = await crearBocaSVG(x, y);
+            break;
+
+        case "bocaPared":
+            obj = await crearSVG(SVG_BOCA_PARED, x, y, 0.15);
+            break;
+
+        case "toma":
+            obj = await crearSVG(SVG_TOMA, x, y, 0.15);
+            break;
+
+        case "tableroTPA":
+            obj = await crearSVG(SVG_TPA, x, y, 0.15);
+            break;
+
+        case "tableroTS":
+            obj = await crearSVG(SVG_TS, x, y, 0.15);
+            break;
+
+        case "switch1":
+            obj = await crearSVG(SVG_SWITCH_1, x, y, 0.15);
+            break;
+
+        case "switch2":
+            obj = await crearSVG(SVG_SWITCH_2, x, y, 0.15);
+            break;
+
+        case "switchCombo":
+            obj = await crearSVG(SVG_SWITCH_COMBO, x, y, 0.15);
+            break;
+
+        case "fan":
+            obj = await crearSVG(SVG_FAN, x, y, 0.15);
+            break;
     }
 
-    if (tipo === "toma") {
-        obj = new fabric.Rect({
-            left: x,
-            top: y,
-            width: 12,
-            height: 12,
-            fill: "blue",
-            originX: "center",
-            originY: "center"
-        });
-    }
-
-    if (tipo === "tablero") {
-        obj = new fabric.Rect({
-            left: x,
-            top: y,
-            width: 20,
-            height: 20,
-            fill: "gray",
-            originX: "center",
-            originY: "center"
-        });
+    if (!obj) {
+        console.warn("⚠️ símbolo no creado:", tipo);
+        return;
     }
 
     obj.tipo = tipo;
-    obj.set({ selectable: true });
-
     canvas.add(obj);
-    console.log("Se ha creado nuev - " + obj + " - " + obj.tipo);
-    return obj;
-}
 
+    console.log("✔ Creado:", tipo);
+}
 // MOUSE DOWN - Click izquierdo
 // COORDENADAS DONDE SE INSTANCIAN LOS OBJETOS SOBRE EL MAPA/PLANO
 // Click en Canvas (USAR SIEMPRE COORDENADAS DE CANVAS!!)
 
-canvas.on("mouse:down", function (opt) {
+canvas.on("mouse:down", async function (opt) {
 
     // PAN con click derecho
     if (opt.button === 2) return;
@@ -233,9 +388,10 @@ canvas.on("mouse:down", function (opt) {
         return; // Fabric maneja todo automáticamente
     }
     // 🔥 MODO CREACIÓN
-    if (tool === "boca" || tool === "toma" || tool === "tablero") {
-        crearSimbolo(pointer.x, pointer.y, tool);
-    }
+    // if (tool === "boca" || tool === "toma" || tool === "tablero") {
+    //     crearSimbolo(pointer.x, pointer.y, tool);
+    // }
+    await crearSimbolo(pointer.x, pointer.y, tool);
 });
 
 // HERRAMIENTA SELECCIONAR
@@ -280,3 +436,11 @@ function borrarObjeto(obj) {
 
     canvas.remove(obj);
 };
+
+//ToolTip 
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+
+const tooltipList = [...tooltipTriggerList].map(el => {
+    return new bootstrap.Tooltip(el);
+});
