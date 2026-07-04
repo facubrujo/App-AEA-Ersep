@@ -1142,3 +1142,10 @@ menuElectricos.querySelectorAll("button").forEach(btn=>{
     });
 
 });
+
+const panel = document.getElementById("panelRight");
+const btn = document.getElementById("btnPanelPropiedades");
+
+btn.addEventListener("click", () => {
+    panel.classList.toggle("open");
+});
