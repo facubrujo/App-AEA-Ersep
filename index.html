@@ -37,19 +37,141 @@
         <!-- BARRA SUPERIOR                                   -->
         <!-- ================================================= -->
 
-        <header class="editor-header">
+        <header class="editor-header d-flex justify-content-between align-items-center px-3 py-2 bg-dark text-white">
 
-            <!-- Nombre del sistema -->
-            <div class="editor-title">
+            <div class="editor-title fw-bold">
                 Editor Eléctrico AEA / ERSeP
             </div>
 
-            <!-- Botón de cambio de tema -->
-            <button id="btnTema" class="btn btn-sm btn-dark">
+            <!-- <div id="contadorObjetos" class="d-flex gap-3 small">
+                <span>Bocas: <strong id="countBocas">0</strong></span>
+                <span>Tomas: <strong id="countTomas">0</strong></span>
+                <span>Tableros: <strong id="countTableros">0</strong></span>
+                <span>Cables: <strong id="countCables">0</strong></span>
+            </div> -->
+
+            <button id="btnTema" class="btn btn-sm btn-light">
                 Tema
             </button>
 
         </header>
+
+        <!-- TOOLBAR FLOTANTE -->
+        <div id="toolbar" class="excal-toolbar shadow-sm">
+
+            <button id="btnCargarPlano" class=" tool-btn">
+                <img src="assets/svg/plano.png" width="44">
+            </button>
+
+            <input type="file" id="inputPlano" accept="image/*" hidden>
+
+
+            <div class="tool-group">
+
+                <button id="btnElectricos" class="tool-btn">
+                    ⚡
+                </button>
+
+                <div id="menuElectricos" class="tool-submenu">
+
+                    <button id="toolBoca" class="tool-btn">
+                        <img src="assets/svg/Boca de Iluminacion.svg" width="44">
+                    </button>
+
+                    <button id="toolBocaPared" class="tool-btn">
+                        <img src="assets/svg/Boca Ilumincacion Pared.svg" width="44">
+                    </button>
+
+                    <button id="toolToma" class="tool-btn">
+                        <img src="assets/svg/Tomacorriente.svg" width="44">
+                    </button>
+
+                    <button id="toolTPA" class="tool-btn">
+                        <img src="assets/svg/Tablero Principal TPA TP.svg" width="44">
+                    </button>
+
+                    <button id="toolTS" class="tool-btn">
+                        <img src="assets/svg/Tablero Seccional TPU TS.svg" width="44">
+                    </button>
+
+                    <button id="toolSwitch1" class="tool-btn">
+                        <img src="assets/svg/Interruptor un efecto.svg" width="44">
+                    </button>
+
+                    <button id="toolSwitch2" class="tool-btn">
+                        <img src="assets/svg/Interruptor dos efectos.svg" width="44">
+                    </button>
+
+                    <button id="toolFan" class="tool-btn">
+                        <img src="assets/svg/Ventilador de techo.svg" width="44">
+                    </button>
+
+                </div>
+
+            </div>
+
+           
+            <button id="toolSelect" class="tool-btn">
+                <img src="assets/svg/dedo.png" width="44">
+            </button>
+
+            <button id="toolText" class="tool-btn">
+                <img src="assets/svg/texto.png" width="44">
+            </button>
+
+            <button id="toolCable" class="tool-btn">
+                <img src="assets/svg/cable.png" width="44">
+            </button>
+
+            <!-- <div class="tool-separator"></div> -->
+
+            <!-- <button id="toolBoca" class="tool-btn">
+                <img src="assets/svg/Boca de Iluminacion.svg" width="44">
+            </button>
+
+            <button id="toolBocaPared" class="tool-btn">
+                <img src="assets/svg/Boca Ilumincacion Pared.svg" width="44">
+            </button>
+
+            <button id="toolToma" class="tool-btn">
+                <img src="assets/svg/Tomacorriente.svg" width="44">
+            </button>
+
+            <button id="toolTPA" class="tool-btn">
+                <img src="assets/svg/Tablero Principal TPA TP.svg" width="44">
+            </button>
+
+            <button id="toolTS" class="tool-btn">
+                <img src="assets/svg/Tablero Seccional TPU TS.svg" width="44">
+            </button>
+
+            <button id="toolSwitch1" class="tool-btn">
+                <img src="assets/svg/Interruptor un efecto.svg" width="44">
+            </button>
+
+            <button id="toolSwitch2" class="tool-btn">
+                <img src="assets/svg/Interruptor dos efectos.svg" width="44">
+            </button>
+
+            <button id="toolFan" class="tool-btn">
+                <img src="assets/svg/Ventilador de techo.svg" width="44">
+            </button> -->
+            <!-- Grupo de símbolos eléctricos -->
+
+
+            <!-- <div class="tool-separator"></div> -->
+
+            <!-- <div class="container mt-2"> -->
+            <div class="tool-btn">
+                <!-- <label class="form-label text-white small">Color</label> -->
+                <input type="color" id="colorPicker" class="form-control form-control-color w-100">
+            </div>
+
+            <button id="toolDelete" class="tool-btn danger">
+                <img src="assets/svg/delete.png" width="30">
+            </button>
+
+        </div>
 
         <!-- ================================================= -->
         <!-- CUERPO PRINCIPAL (3 COLUMNAS)                    -->
@@ -61,12 +183,24 @@
             <!-- PANEL IZQUIERDO (HERRAMIENTAS)                  -->
             <!-- ================================================= -->
 
-            <aside id="panelLeft" class="panel panel-left">
+            <!-- <aside id="panelLeft" class="panel panel-left">
 
-                <!-- Título del panel -->
+                
                 <h5>Herramientas</h5>
 
                 <div id="tools">
+
+                    <button id="btnCargarPlano" class="btn btn-sm btn-light w-100 mt-2 mb-2">
+                        Cargar plano
+                    </button>
+
+                    <input type="file" id="inputPlano" accept="image/*" hidden>
+
+                    <div class="container">
+                        <button class="btn btn-sm btn-dark w-100 mb-1" id="toolText">
+                            Texto
+                        </button>
+                    </div>
 
                     <div class="container">
                         <button class="btn btn-sm btn-dark w-100 mb-1" id="toolSelect">
@@ -133,13 +267,14 @@
 
                 </div>
 
-                <button id="btnCargarPlano" class="btn btn-sm btn-light w-100 mt-2">
-                    Cargar plano
-                </button>
 
-                <input type="file" id="inputPlano" accept="image/*" hidden>
+                <div class="container mt-2">
+                    <label class="form-label text-white small">Color</label>
+                    <input type="color" id="colorPicker" class="form-control form-control-color w-100">
+                </div>
 
-            </aside>
+
+            </aside> -->
 
             <!-- ================================================= -->
             <!-- AREA CENTRAL (CANVAS DEL PLANO)                  -->
@@ -157,8 +292,64 @@
 
                 <h5>Propiedades</h5>
 
-                <div id="properties">
+                <!-- <div id="properties">
                     <p class="text-muted">Selecciona un objeto</p>
+                </div> -->
+
+                <div class="mb-3 p-2 bg-dark text-white rounded">
+
+                    <h6 class="mb-2">Información del proyecto</h6>
+
+                    <div class="small">
+                        Bocas: <strong id="countBocas">0</strong><br>
+                        Tomas: <strong id="countTomas">0</strong><br>
+                        Tableros: <strong id="countTableros">0</strong><br>
+                        Cables: <strong id="countCables">0</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- <div id="toolInfo">
+                    Herramienta activa: <span id="toolActivo">Seleccionar</span>
+                </div> -->
+
+                <div id="panelPropiedades">
+
+                    <h5>Propiedades</h5>
+
+                    <div id="propSinSeleccion">
+                        Herramienta:
+                        <span id="toolActivo">Seleccionar</span>
+                    </div>
+
+                    <div id="propSeleccion" style="display:none">
+
+                        <div>
+                            <span id="propIcono">💡</span>
+                            <strong id="propNombre">Boca</strong>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-2">
+                            Color:
+                            <input type="color" id="propColorInput" class="form-control form-control-color w-100">
+                        </div>
+
+                        <div class="mb-2">
+                            Tamaño (%):
+                            <input type="range" id="propEscalaInput" min="10" max="300" value="100" class="form-range">
+                            <small id="propEscala">100%</small>
+                        </div>
+
+                        <div class="mb-2">
+                            Ángulo:
+                            <input type="range" id="propAnguloInput" min="0" max="360" value="0" class="form-range">
+                            <small id="propAngulo">0°</small>
+                        </div>
+
+                    </div>
                 </div>
 
             </aside>

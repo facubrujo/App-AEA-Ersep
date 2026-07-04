@@ -80,9 +80,11 @@ const SVG_SWITCH_2 = `
 // INTERRUPTOR COMBINACION
 const SVG_SWITCH_COMBO = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 8; transform-origin: 236.142px 290.351px;" cx="246.652" cy="311.018" rx="5.167" ry="4.737" transform="matrix(-0.50638, -0.86231, 0.871191, -0.491257, -194.925853, -223.79163)"/>
-  <polyline style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 8; transform-origin: 41.217px 66.561px;" points="49.724 82.492 33.655 41.154 25.821 45.891" transform="matrix(-0.50638, -0.86231, 0.86231, -0.50638, -0.000023, 0.000002)"/>
-  <polyline style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 8;" points="56.675 43.31 81.219 12.737 73.038 8"/>
+  <polyline style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 8; transform-origin: 41.217px 66.561px;" points="25.820999145507812 45.89099884033203" transform="matrix(-0.50638, -0.86231, 0.86231, -0.50638, -0.000023, 0.000002)"/>
+  <line style="fill: none; stroke: rgb(0, 0, 0);" x1="79.192" y1="15.798" x2="20.963" y2="84.125"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 8; transform-origin: 245.388px 310.15px;" cx="245.465" cy="310.623" rx="5" ry="4.999" transform="matrix(-0.50638, -0.86231, 0.871191, -0.491257, -194.889976, -261.376647)"/>
+  <line style="fill: none; stroke: rgb(0, 0, 0);" x1="73.991" y1="11.922" x2="79.222" y2="16.498"/>
+  <line style="fill: none; stroke: rgb(0, 0, 0);" x1="20.846" y1="83.468" x2="26.191" y2="88.152"/>
 </svg>`;
 // TP - TPA
 const SVG_TPA = `

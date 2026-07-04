@@ -10,9 +10,12 @@
 /* ========================================================= */
 
 * {
-    margin: 0; /* elimina márgenes por defecto del navegador */
-    padding: 0; /* elimina padding por defecto */
-    box-sizing: border-box; /* hace que width/height incluyan padding y borde */
+    margin: 0;
+    /* elimina márgenes por defecto del navegador */
+    padding: 0;
+    /* elimina padding por defecto */
+    box-sizing: border-box;
+    /* hace que width/height incluyan padding y borde */
 }
 
 
@@ -21,10 +24,14 @@
 /* ========================================================= */
 
 .editor-app {
-    height: 100vh; /* ocupa toda la altura de la pantalla */
-    display: flex; /* activa flexbox para organizar layout */
-    flex-direction: column; /* header arriba, cuerpo abajo */
-    font-family: Arial, sans-serif; /* fuente base simple */
+    height: 100vh;
+    /* ocupa toda la altura de la pantalla */
+    display: flex;
+    /* activa flexbox para organizar layout */
+    flex-direction: column;
+    /* header arriba, cuerpo abajo */
+    font-family: Arial, sans-serif;
+    /* fuente base simple */
 }
 
 
@@ -33,13 +40,20 @@
 /* ========================================================= */
 
 .editor-header {
-    height: 50px; /* altura fija del header */
-    background-color: #1f1f1f; /* color oscuro tipo app profesional */
-    color: white; /* texto blanco */
-    display: flex; /* flex para alinear elementos */
-    align-items: center; /* centra verticalmente */
-    justify-content: space-between; /* separa título y botón */
-    padding: 0 15px; /* espacio lateral */
+    height: 50px;
+    /* altura fija del header */
+    background-color: #1f1f1f;
+    /* color oscuro tipo app profesional */
+    color: white;
+    /* texto blanco */
+    display: flex;
+    /* flex para alinear elementos */
+    align-items: center;
+    /* centra verticalmente */
+    justify-content: space-between;
+    /* separa título y botón */
+    padding: 0 15px;
+    /* espacio lateral */
 }
 
 
@@ -48,9 +62,12 @@
 /* ========================================================= */
 
 .editor-body {
-    flex: 1; /* ocupa todo el espacio restante */
-    display: flex; /* columnas lado a lado */
-    overflow: hidden; /* evita scroll general */
+    flex: 1;
+    /* ocupa todo el espacio restante */
+    display: flex;
+    /* columnas lado a lado */
+    overflow: hidden;
+    /* evita scroll general */
 }
 
 
@@ -59,23 +76,30 @@
 /* ========================================================= */
 
 .panel {
-    width: 220px; /* ancho base de paneles */
-    background-color: #2b2b2b; /* fondo oscuro tipo editor */
-    color: white; /* texto blanco */
-    padding: 10px; /* espacio interno */
-    overflow-y: auto; /* scroll si contenido crece */
+    width: 220px;
+    /* ancho base de paneles */
+    background-color: #2b2b2b;
+    /* fondo oscuro tipo editor */
+    color: white;
+    /* texto blanco */
+    padding: 10px;
+    /* espacio interno */
+    overflow-y: auto;
+    /* scroll si contenido crece */
 }
 
 
 /* panel izquierdo */
-.panel-left {
-    border-right: 1px solid #444; /* separador visual */
-}
+/* .panel-left {
+    border-right: 1px solid #444;  
+} 
+*/
 
 
 /* panel derecho */
 .panel-right {
-    border-left: 1px solid #444; /* separador visual */
+    border-left: 1px solid #444;
+    /* separador visual */
 }
 
 
@@ -84,18 +108,25 @@
 /* ========================================================= */
 
 .canvas-wrapper {
-    flex: 1; /* ocupa todo el centro disponible */
-    background-color: #e9e9e9; /* fondo gris claro tipo plano */
-    position: relative; /* necesario para canvas interno */
-    overflow: hidden; /* evita scroll */
+    flex: 1;
+    /* ocupa todo el centro disponible */
+    background-color: #e9e9e9;
+    /* fondo gris claro tipo plano */
+    position: relative;
+    /* necesario para canvas interno */
+    overflow: hidden;
+    /* evita scroll */
 }
 
 
 /* canvas real */
 #canvasPlano {
-    width: 100%; /* ancho completo */
-    height: 100%; /* alto completo */
-    display: block; /* elimina espacios inline */
+    width: 100%;
+    /* ancho completo */
+    height: 100%;
+    /* alto completo */
+    display: block;
+    /* elimina espacios inline */
 }
 
 
@@ -104,5 +135,293 @@
 /* ========================================================= */
 
 #btnTema {
-    cursor: pointer; /* indica que es clickeable */
+    cursor: pointer;
+    /* indica que es clickeable */
+}
+
+
+
+/* .excal-toolbar {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #313131;
+    border-radius: 12px;
+    z-index: 1000;
+    align-items: center;
+} */
+
+/* .excal-toolbar {
+    position: fixed;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 6px;
+    padding: 8px;
+
+    background: rgba(30,30,30,0.9);
+    border-radius: 12px;
+    z-index: 1000;
+} */
+
+.excal-toolbar {
+    position: fixed;
+
+    right: 220px;
+    top: 52%;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 10px;
+
+    background: rgb(203 203 203 / 65%);
+    border-radius: 14px;
+
+    backdrop-filter: blur(10px);
+
+    z-index: 1000;
+
+    align-items: center;
+}
+
+/* .tool-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #f1f1f1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+} */
+.tool-btn {
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #b1b1b1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+.tool-btn:hover {
+    /* background: #444; */
+    transform: scale(1.05);
+}
+
+.tool-separator {
+    width: 80%;
+    height: 1px;
+    background: #d1d1d1;
+    margin: 6px 0;
+}
+
+.tool-btn:hover {
+    background: #e2e2e2;
+    /* border-color: #1f1f1f; */
+    /* border: 2px solid rgb(214, 214, 214); */
+}
+
+.tool-btn.danger {
+    background: #ff515191;
+}
+
+/* .tool-separator {
+    width: 1px;
+    height: 30px;
+    background: #ccc;
+} */
+
+
+@media (max-width: 768px) {
+
+    #panelLeft {
+        display: none;
+    }
+
+    #panelRight {
+        width: 220px;
+    }
+
+    /* .excal-toolbar {
+        flex-wrap: wrap;
+        width: 90%;
+    } */
+}
+
+@media (max-width: 768px) {
+
+    .excal-toolbar {
+
+        position: fixed;
+
+        inset: auto;
+        /* 🔥 limpia top/right/bottom */
+
+        left: 50%;
+        bottom: 10px;
+
+        transform: translateX(-50%) !important;
+
+        display: flex;
+
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+
+        justify-content: center;
+        align-items: center;
+
+        width: min(95vw, 420px);
+
+        max-height: 40vh;
+        overflow-y: auto;
+
+        gap: 8px;
+
+        padding: 10px;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+
+    .tool-group {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* menú oculto */
+    .tool-submenu {
+        position: fixed !important;
+        /* 🔥 CRÍTICO */
+
+        z-index: 9999;
+
+        display: none;
+
+        padding: 10px;
+        border-radius: 12px;
+
+        background: rgba(203, 203, 203, .95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+    }
+
+    /* abierto */
+    .tool-submenu.show {
+        display: flex;
+    }
+}
+
+/* @media (max-width:768px) {
+
+    .excal-toolbar {
+
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, 44px);
+
+        justify-content: center;
+
+        gap: 8px;
+
+        width: min(95vw, 420px);
+
+    }
+
+} */
+
+.panel-right {
+    padding-right: 70px;
+}
+
+/* .canvas-wrapper {
+    margin-right: 80px;
+} */
+
+/*=============================
+  GRUPO DE HERRAMIENTAS
+==============================*/
+
+.tool-group {
+    position: relative;
+}
+
+/* menú oculto */
+
+/* .tool-submenu {
+
+    position: absolute;
+
+    right: 70px;
+
+    top: 0;
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    background: rgba(203, 203, 203, .92);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+
+} */
+
+/* cuando está abierto */
+
+/* .tool-submenu.show {
+
+    display: flex;
+
+} */
+.tool-submenu {
+    position: absolute;
+    right: 70px;
+    top: 0;
+
+    display: none;
+    padding: 10px;
+    border-radius: 12px;
+
+    background: rgba(203, 203, 203, .92);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+
+    display: none;
+    gap: 8px;
+}
+
+.tool-submenu.show {
+    display: grid;
+    grid-template-columns: repeat(3, 44px);
+    justify-content: center;
+    align-content: center;
 }
