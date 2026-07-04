@@ -4,6 +4,15 @@
 /* FASE 1: LAYOUT BASE                                       */
 /* ========================================================= */
 
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.editor-app {
+    height: 100dvh; /* mejor que 100vh en mobile real */
+}
+
 
 /* ========================================================= */
 /* RESET BÁSICO                                              */
@@ -330,6 +339,12 @@
     /* abierto */
     .tool-submenu.show {
         display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .canvas-wrapper {
+        touch-action: none;
     }
 }
 

@@ -1149,3 +1149,76 @@ const btn = document.getElementById("btnPanelPropiedades");
 btn.addEventListener("click", () => {
     panel.classList.toggle("open");
 });
+
+
+//------------------------------------------
+
+
+//let canvas = new fabric.Canvas("canvasPlano");
+
+let lastDist = null;
+
+function getDistance(touches) {
+    let dx = touches[0].clientX - touches[1].clientX;
+    let dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+canvas.upperCanvasEl.addEventListener("touchmove", function (e) {
+
+    if (e.touches.length === 2) {
+        e.preventDefault();
+
+        let dist = getDistance(e.touches);
+
+        if (lastDist) {
+            let zoom = canvas.getZoom();
+            let delta = dist / lastDist;
+
+            zoom *= delta;
+
+            zoom = Math.min(3, Math.max(0.5, zoom));
+
+            canvas.setZoom(zoom);
+        }
+
+        lastDist = dist;
+    }
+});
+
+canvas.upperCanvasEl.addEventListener("touchend", function () {
+    lastDist = null;
+});
+
+
+let isDragging = false;
+let lastPosX, lastPosY;
+
+canvas.upperCanvasEl.addEventListener("touchstart", function (e) {
+    if (e.touches.length === 1) {
+        isDragging = true;
+        lastPosX = e.touches[0].clientX;
+        lastPosY = e.touches[0].clientY;
+    }
+});
+
+canvas.upperCanvasEl.addEventListener("touchmove", function (e) {
+
+    if (isDragging && e.touches.length === 1) {
+        e.preventDefault();
+
+        let vpt = canvas.viewportTransform;
+
+        vpt[4] += e.touches[0].clientX - lastPosX;
+        vpt[5] += e.touches[0].clientY - lastPosY;
+
+        canvas.requestRenderAll();
+
+        lastPosX = e.touches[0].clientX;
+        lastPosY = e.touches[0].clientY;
+    }
+});
+
+canvas.upperCanvasEl.addEventListener("touchend", function () {
+    isDragging = false;
+});
