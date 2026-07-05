@@ -56,7 +56,7 @@ let isTyping = false;
 // CANVAS BASE
 // ==============================
 const canvas = new fabric.Canvas("canvasPlano", {
-    width: window.innerWidth - 200,
+    width: window.innerWidth,//- 200,
     height: window.innerHeight,
     selection: false
 });
@@ -100,16 +100,17 @@ inputPlano.addEventListener("change", function (e) {
         fabric.Image.fromURL(f.target.result, function (img) {
 
             // ajustar escala al canvas
-            const scaleX = canvas.getWidth() / img.width;
-            const scaleY = canvas.getHeight() / img.height;
-            const scale = Math.min(scaleX, scaleY);
+            // const scaleX = canvas.getWidth() / img.width;
+            // const scaleY = canvas.getHeight() / img.height;
+            // const scale = Math.min(scaleX, scaleY);
 
             canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
-                scaleX: scale,
-                scaleY: scale,
+                scaleX: 1,// scale,
+                scaleY: 1,// scale,
                 originX: "left",
                 originY: "top"
             });
+            
 
         });
 

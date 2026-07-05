@@ -467,4 +467,9 @@ html, body {
         transform: translateX(0);
     }
 
+
+    .lower-canvas {
+        width: auto;
+        height: auto;
+    }
 }
