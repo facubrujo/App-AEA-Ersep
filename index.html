@@ -42,6 +42,9 @@
             <div class="editor-title fw-bold">
                 Editor Eléctrico
             </div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+                aria-controls="offcanvasBottom">Proyecto Vivienda Datos</button>
+
 
             <!-- <div id="contadorObjetos" class="d-flex gap-3 small">
                 <span>Bocas: <strong id="countBocas">0</strong></span>
@@ -342,7 +345,7 @@
 
                         <div class="mb-2">
                             Tamaño (%):
-                            <input type="range" id="propEscalaInput" min="10" max="300" value="100" class="form-range">
+                            <input type="range" id="propEscalaInput" min="1" max="300" value="100" class="form-range">
                             <small id="propEscala">100%</small>
                         </div>
 
@@ -357,7 +360,86 @@
 
             </aside>
 
+            <!-- SIDE BAR -->
+
+            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasBottomLabel"> PROYECTO DE VIVIENDA </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body small">
+
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">CIRCUITOS</th>
+                                <th scope="col">IUG</th>
+                                <th scope="col">TUG1</th>
+                                <th scope="col">TUG2</th>
+                                <th scope="col">ACU</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">DPMS (VA)</th>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">TENSION (V)</th>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Ib (A) Corriente Calculada</th>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SECCION L y N (mm2)</th>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">SECCION DE PE (mm2)</th>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Iz (A) Corriente Maxima Cable</th>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">In (A) Corriente PIA</th>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                                <td> ... </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    ...
+                </div>
+            </div>
+
         </div>
+
 
     </div>
 

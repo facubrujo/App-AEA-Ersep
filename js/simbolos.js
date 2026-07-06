@@ -57,7 +57,7 @@ const SVG_BOCA = `
 `;
 
 const SVG_BOCA_PARED = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 8;" cx="102" cy="83.692" rx="90" ry="81.692"/>
   <path style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 8;" d="M 32.979 33.701 C 21.384 14.919 138.622 107.099 163.323 147.106"/>
   <path style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 8;" d="M 38.365 144.15 C 36.494 132.158 171.009 28.717 171.939 34.687"/>

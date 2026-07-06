@@ -602,12 +602,7 @@ canvas.on("mouse:down", async function (opt) {
     if (tool === "cable") {
 
         // CLICK 1 → A
-        // if (cableStep === 0) {
 
-        //     cableStart = pointer;
-        //     cableStep = 1;
-        //     return;
-        // }
         if (cableStep === 0) {
 
             cableStart = pointer;
@@ -629,28 +624,7 @@ canvas.on("mouse:down", async function (opt) {
         }
 
         // CLICK 2 → B
-        // if (cableStep === 1) {
-
-        //     cableEnd = pointer;
-        //     cableStep = 2;
-
-        //     cableControl = {
-        //         x: (cableStart.x + cableEnd.x) / 2,
-        //         y: (cableStart.y + cableEnd.y) / 2
-        //     };
-
-        //     cableTemp = new fabric.Path("", {
-        //         fill: "",
-        //         stroke: colorActual,
-        //         strokeWidth: 2,
-        //         selectable: false,
-        //         evented: false
-        //     });
-
-        //     canvas.add(cableTemp);
-
-        //     return;
-        // }
+    
         if (cableStep === 1) {
 
             cableEnd = pointer;
@@ -660,14 +634,7 @@ canvas.on("mouse:down", async function (opt) {
         }
 
         // CLICK 3 → fijar curva
-        // if (cableStep === 2) {
-
-        //     cableControl = pointer;
-
-        //     cableStep = 0;
-
-        //     return;
-        // }
+        
         if (cableStep === 2) {
 
             cableControl = pointer;
@@ -706,32 +673,7 @@ canvas.on("mouse:down", async function (opt) {
     actualizarContadores();
 });
 
-// canvas.on("mouse:move", function (opt) {
 
-//     if (tool !== "cable") return;
-//     if (cableStep !== 2) return;
-
-//     const p = canvas.getPointer(opt.e);
-
-//     const path = `
-//         M ${cableStart.x} ${cableStart.y}
-//         Q ${p.x} ${p.y}
-//         ${cableEnd.x} ${cableEnd.y}
-//     `;
-
-//     canvas.remove(cableTemp);
-
-//     cableTemp = new fabric.Path(path, {
-//         fill: "",
-//         stroke: colorActual,
-//         strokeWidth: 2,
-//         selectable: false,
-//         evented: false
-//     });
-
-//     canvas.insertAt(cableTemp, LAYERS.CABLES);
-//     //canvas.add(cableTemp);
-// });
 canvas.on("mouse:move", function (opt) {
 
     if (tool !== TOOL.CABLE) return;
